@@ -3,6 +3,8 @@ const path = require('path')
 require('./db/db')
 require('dotenv').config()
 
+
+//'mongodb+srv://aliraza:gold12@cluster0.vpohf.mongodb.net/school-managment?retryWrites=true&w=majority'
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
