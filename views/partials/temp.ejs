@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <%-include('partials/bootstrap.ejs')-%>
+    </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <!-- <i class='bx bxl-c-plus-plus icon'></i> -->
+        <div class="logo_name"><%= user.name%></div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <!-- <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li> -->
+      <li>
+        <a href="#">
+        
+          <a href="/dashboard">   <i class='bx bx-grid-alt'></i><span class="links_name">Dashboard</span></a> 
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+       <a href="#">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User</span>
+       </a>
+       <span class="tooltip">User</span>
+     </li>
+   
+     <li>
+       <a href="#">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Setting</span>
+       </a>
+       <span class="tooltip">Setting</span>
+     </li>
+
+     <li>
+      <a href="/logout">
+        <i class="fas fa-power-off"></i>
+        <span class="links_name">Logout</span>
+      </a>
+      <span class="tooltip">Logout</span>
+    </li>
+   
+    </ul>
+  </div>
+  <div class="home-section">
+    <div class="nav bg-light p-3 text-dark">
+      <h5>Dashboard <i class="fas fa-building"></i></h5>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 ">
+      <div class="card py-3 bg-dark text-light">
+        <h3 class="text-center">Total Classes <i class="fas fa-laptop"></i></h3>
+        <h3 class="text-center">8</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+   <div class="classes">
+     <h3>All Classes <i></i><a href="#" class="btn btn-primary">Add Class <i class="fas fa-plus"></i></a></h3>
+     
+   </div>
+  <div class="row">
+
+    <div class="col-md-4" >
+        <div class="card" id="classes">
+           <div class="data m-3">
+            <h3 class="text-center">Chemistry <i class="fas fa-users"></i></h3>
+            <br>
+            <p> <i class="fas fa-user-tie"></i> Teacher</p>
+            <p> <i class="fas fa-check"></i> chem 4th</p>
+            <p> <i class="fas fa-check"></i>  bs chem</p>
+            <p> <i class="fas fa-check"></i>  subject</p>
+            <p> <i class="fas fa-check"></i> credit hours</p>
+            <p> <i class="fas fa-check"></i> subject code</p>
+            <p  class="text-muted"> <i class="fas fa-clock"></i> timeline</p>
+           </div>
+        <hr>
+          <div class="actions">
+             <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+              <a href="#" class="btn btn-warning">   <i class="fas fa-eye"></i></a>
+               <a href="#" class="btn btn-danger"> <i class="fas fa-trash"></i></a>
+                 <a href="#" class="btn btn-info"><i class="fas fa-pencil-alt"></i></a>
+          </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4" >
+      <div class="card" id="classes">
+         <div class="data m-3">
+          <h3 class="text-center">Chemistry <i class="fas fa-users"></i></h3>
+          <br>
+          <p> <i class="fas fa-check"></i> chem 4th</p>
+          <p> <i class="fas fa-check"></i>  bs chem</p>
+          <p> <i class="fas fa-check"></i>  subject</p>
+          <p> <i class="fas fa-check"></i> credit hours</p>
+          <p> <i class="fas fa-check"></i> subject code</p>
+          <p  class="text-muted"> <i class="fas fa-clock"></i> timeline</p>
+         </div>
+      <hr>
+        <div class="actions">
+           <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            <a href="#" class="btn btn-warning">   <i class="fas fa-eye"></i></a>
+             <a href="#" class="btn btn-danger"> <i class="fas fa-trash"></i></a>
+               <a href="#" class="btn btn-info"><i class="fas fa-pencil-alt"></i></a>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-md-4" >
+    <div class="card" id="classes">
+       <div class="data m-3">
+        <h3 class="text-center">Chemistry <i class="fas fa-users"></i></h3>
+        <br>
+        <p> <i class="fas fa-check"></i> chem 4th</p>
+        <p> <i class="fas fa-check"></i>  bs chem</p>
+        <p> <i class="fas fa-check"></i>  subject</p>
+        <p> <i class="fas fa-check"></i> credit hours</p>
+        <p> <i class="fas fa-check"></i> subject code</p>
+        <p  class="text-muted"> <i class="fas fa-clock"></i> timeline</p>
+       </div>
+    <hr>
+      <div class="actions">
+         <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+          <a href="#" class="btn btn-warning">   <i class="fas fa-eye"></i></a>
+           <a href="#" class="btn btn-danger"> <i class="fas fa-trash"></i></a>
+             <a href="#" class="btn btn-info"><i class="fas fa-pencil-alt"></i></a>
+      </div>
+    </div>
+</div>
+  
+  
+  </div>
+</div>
+  </div>
+  <div class="foot">
+    <%-include('partials/footer.ejs')-%>
+  </div>
+  <script>
+
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        let searchBtn = document.querySelector(".bx-search");
+
+        closeBtn.addEventListener("click", ()=>{
+          sidebar.classList.toggle("open");
+          menuBtnChange();//calling the function(optional)
+        });
+
+        searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+          sidebar.classList.toggle("open");
+          menuBtnChange(); //calling the function(optional)
+        });
+
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+        if(sidebar.classList.contains("open")){
+          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+        }else {
+          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+        }
+        }
+
+
+  </script>
+
+</body>
+</html>

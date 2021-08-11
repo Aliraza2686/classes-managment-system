@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+   
+    <link rel="stylesheet" href="/style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <%-include('partials/bootstrap.ejs')-%>
+    </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <!-- <i class='bx bxl-c-plus-plus icon'></i> -->
+        <div class="logo_name"><%= user.name%></div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <!-- <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li> -->
+      <li>
+        <a href="#">
+        
+          <a href="/dashboard">   <i class='bx bx-grid-alt'></i><span class="links_name">Dashboard</span></a> 
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+       <a href="#">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User</span>
+       </a>
+       <span class="tooltip">User</span>
+     </li>
+   
+     <li>
+       <a href="#">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Setting</span>
+       </a>
+       <span class="tooltip">Setting</span>
+     </li>
+
+     <li>
+      <a href="/logout">
+        <i class="fas fa-power-off"></i>
+        <span class="links_name">Logout</span>
+      </a>
+      <span class="tooltip">Logout</span>
+    </li>
+   
+    </ul>
+  </div>
+  <div class="home-section">
+    <div class="nav bg-light p-3 text-dark">
+      <h5>Update Student <i class="fas fa-building"></i></h5>
+     </div>
+
+     
+     <div class="container">
+                        
+        <form action="/update/student/<%=clas.id%>/<%=student.id%>?_method=PUT" method="POST" class="form-group m-5">
+            <h3 class="text-center">Update Student <i class="fas fa-book-reader"></i></h3>
+           <div>
+               <label for="name">Student Name</label><br>
+               <input type="text" name="Sname" id="name" placeholder="Enter Student Name" required class="form-control" value="<%=student.Sname%>">
+           </div><br>
+           <div>
+            <label for="rollno">Student Roll No</label><br>
+            <input type="text" name="Srollno" id="rollno" placeholder="Enter Student Roll No" required class="form-control" value="<%=student.Srollno%>">
+        </div><br>
+           <div>
+               <label for="Sgender">Gender</label>
+               <select name="Sgender" id="gender" class="form-control">
+                <% if(student.Sgender === 'male') { %> 
+                    <option value="male" selected>Male</option>
+                    <option value="female">Female</option>
+                    <% } else if(student.Sgender === 'female') { %>
+                        <option value="female" selected>Female</option>
+                        <option value="male" >Male</option>
+                        <%} %>
+
+               </select>
+               
+        </div><br>
+        <div>
+            <label for="Sstatus">Status</label>
+               <select name="Sstatus" id="status" class="form-control">
+            
+                <% if(student.Sstatus === 'average') { %>    
+                  <option value="average" selected>Average</option>
+                    <option value="good" >Good</option>
+                     <option value="excelent">Excelent</option>
+                        <option value="bad">Bad</option>
+                    <% } else if(student.Sstatus === 'good') { %> 
+                        <option value="good" selected>Good</option>
+                        <option value="average">Average</option>
+                          <option value="excelent">Excelent</option>
+                             <option value="bad">Bad</option>
+                        <%} else if(student.Sstatus === 'excelent') { %>
+                             <option value="excelent" selected>Excelent</option>
+                             <option value="good" >Good</option>
+                             <option value="average">Average</option>
+                             <option value="bad">Bad</option>
+                            <% } else if(student.Sstatus === 'bad') { %> 
+                                <option value="bad" selected>Bad</option>
+                                <option value="excelent" >Excelent</option>
+                                <option value="good">Good</option>
+                                <option value="average">Average</option>
+                                <% }%>
+               </select>
+               
+
+        </div><br>
+      
+        <div>
+            <label for="Stype">Role</label>
+            <select name="Stype" id="representetive" class="form-control">
+
+                <% if(student.Stype === 'genral') { %>         
+                    <option value="genral" selected>genral</option>
+                     <option value="cr" >CR</option>
+                     <option value="gr" >GR</option>
+                     <option value="secondCr">Second CR</option>
+                     <option value="secondGr" >Second GR</option>
+                      <% } else if(student.Stype === 'cr') { %> 
+                       <option value="cr" selected>CR</option>
+                       <option value="genral">genral</option>
+                       <option value="gr" >GR</option>
+                       <option value="secondCr">Second CR</option>
+                       <option value="secondGr" >Second GR</option>
+                          <%} else if(student.Stype === 'gr') { %>
+                                <option value="gr" selected>GR</option>
+                                <option value="cr">CR</option>
+                                <option value="genral">genral</option>
+                                <option value="secondCr">Second CR</option>
+                                <option value="secondGr" >Second GR</option>
+                              <% } else if(student.Stype === 'secondCr') { %> 
+                                  <option value="secondCr" selected>Second CR</option>
+                                  <option value="gr" >GR</option>
+                                  <option value="cr">CR</option>
+                                  <option value="genral">genral</option>
+                                  <option value="secondGr" >Second GR</option>
+                                  <% } else if(student.Stype === 'secondGr') { %>
+                                    <option value="secondGr" selected>Second GR</option>
+                                    <option value="secondCr">Second CR</option>
+                                  <option value="gr" >GR</option>
+                                  <option value="cr">CR</option>
+                                  <option value="genral">genral</option>
+                                  <% }%>
+
+            </select>
+         
+        </div><br>
+
+    
+
+     <br>
+     <button type="submit" class="btn btn-primary mb-3">Update</button>
+     <a href="/dashboard" class="btn btn-danger mb-3">Cancel</a>
+        </form>
+    </div>
+  
+
+
+
+  </div>
+  <div class="foot">
+    <%-include('partials/footer.ejs')-%>
+  </div>
+
+  <script>
+
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        let searchBtn = document.querySelector(".bx-search");
+
+        closeBtn.addEventListener("click", ()=>{
+          sidebar.classList.toggle("open");
+          menuBtnChange();//calling the function(optional)
+        });
+
+        searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+          sidebar.classList.toggle("open");
+          menuBtnChange(); //calling the function(optional)
+        });
+
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+        if(sidebar.classList.contains("open")){
+          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+        }else {
+          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+        }
+        }
+
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+   
+    <link rel="stylesheet" href="/style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <%-include('partials/bootstrap.ejs')-%>
+    </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <!-- <i class='bx bxl-c-plus-plus icon'></i> -->
+        <div class="logo_name"><%= user.name%></div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <!-- <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li> -->
+      <li>
+        <a href="#">
+        
+          <a href="/dashboard">   <i class='bx bx-grid-alt'></i><span class="links_name">Dashboard</span></a> 
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+       <a href="#">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User</span>
+       </a>
+       <span class="tooltip">User</span>
+     </li>
+   
+     <li>
+       <a href="#">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Setting</span>
+       </a>
+       <span class="tooltip">Setting</span>
+     </li>
+
+     <li>
+      <a href="/logout">
+        <i class="fas fa-power-off"></i>
+        <span class="links_name">Logout</span>
+      </a>
+      <span class="tooltip">Logout</span>
+    </li>
+   
+    </ul>
+  </div>
+  <div class="home-section">
+    <div class="nav bg-light p-3 text-dark">
+      <h5>Add Assignment<i class="fas fa-building"></i></h5>
+     </div>
+
+     
+     
+     <div class="container">
+                        
+        <form action="/add/assignment/<%=clas.id%>/<%=student.id%>" method="POST" class="form-group m-5">
+            <h3 class="text-center">Add Assingment <i class="fas fa-plus"></i></h3>
+           <div>
+               <label for="Anumber">Assignment Number</label><br>
+               <input type="text" name="Anumber" id="quiznumber" placeholder="Enter Assignment No" required class="form-control">
+           </div><br>
+           <div>
+            <label for="Atopic">Topic</label><br>
+            <input type="text" name="Atopic" id="topic" placeholder="Enter topic" required class="form-control">
+        </div><br>
+           <div>
+            <label for="Adate">Date</label><br>
+            <input type="text" name="Adate" id="topic" placeholder="Enter date" required class="form-control">
+        </div><br>
+      
+      
+        <div>
+            <label for="Ascore">Score</label>
+            <br>
+            <input type="text" name="Ascore" id="score" placeholder="Enter score" required class="form-control">
+            
+         
+        </div><br>
+
+        <div>
+            <label for="Ascorefrom">Score From</label>
+            <br>
+            <input type="text" name="Ascorefrom" id="scorefrom" placeholder="Enter score from" required class="form-control">
+            
+         
+        </div><br>
+        <div>
+            <label for="Aattendence">Attendence</label>
+            <select name="Aattendence" id="attendence" class="btn btn-info btn-sm">
+              
+                <option value="P">P</option>
+                <option value="A">A</option>
+                <option value="L">L</option>
+
+            </select>
+
+        </div><br>
+        <div>
+
+            <label for="Astatus">
+                Status
+            </label>
+            <select name="Astatus" id="Astatus">
+
+                <option value="verified">Verified</option>
+                <option value="unverified">Unverified</option>
+            </select>
+
+        </div><br>
+
+
+    
+
+     <br>
+     <button type="submit" class="btn btn-primary" id="addQuiz">Add</button>
+     <a href="/student/profile/<%=clas.id%>/<%=student.id%>" class="btn btn-danger">Cancel</a>
+        </form>
+    </div>
+  
+
+
+
+  </div>
+  <div class="foot">
+    <%-include('partials/footer.ejs')-%>
+  </div>
+
+  <script>
+
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        let searchBtn = document.querySelector(".bx-search");
+
+        closeBtn.addEventListener("click", ()=>{
+          sidebar.classList.toggle("open");
+          menuBtnChange();//calling the function(optional)
+        });
+
+        searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+          sidebar.classList.toggle("open");
+          menuBtnChange(); //calling the function(optional)
+        });
+
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+        if(sidebar.classList.contains("open")){
+          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+        }else {
+          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+        }
+        }
+
+
+  </script>
+
+</body>
+</html>

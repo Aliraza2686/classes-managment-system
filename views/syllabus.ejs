@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+   
+    <link rel="stylesheet" href="/style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <%-include('partials/bootstrap.ejs')-%>
+    </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <!-- <i class='bx bxl-c-plus-plus icon'></i> -->
+        <div class="logo_name"><%= user.name%></div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <!-- <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li> -->
+      <li>
+        <a href="#">
+        
+          <a href="/dashboard">   <i class='bx bx-grid-alt'></i><span class="links_name">Dashboard</span></a> 
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class='fas fa-book' ></i>
+          <span class="links_name">About</span>
+        </a>
+        <span class="tooltip">About</span>
+      </li>
+    
+      <li>
+        <a href="#">
+          <i class='fas fa-plus' ></i>
+          <span class="links_name">Add Class</span>
+        </a>
+        <span class="tooltip">Add Class</span>
+      </li>
+ 
+      <li>
+       <a href="#">
+         <i class='fas fa-user-shield' ></i>
+         <span class="links_name">Help</span>
+       </a>
+       <span class="tooltip">Help</span>
+     </li>
+     <li>
+      <a href="/logout">
+        <i class="fas fa-power-off"></i>
+        <span class="links_name">Logout</span>
+      </a>
+      <span class="tooltip">Logout</span>
+    </li>
+   
+    </ul>
+  </div>
+  <div class="home-section">
+    <div class="nav bg-light p-3 text-dark">  
+      <h5>Syllabus <i class="fas fa-graduation-cap"></i> <a href="/view/students/<%=clas.id%>" class="btn btn-primary btn-sm"> <i class="fas fa-arrow-left"></i> Go back</a>
+      </h5>
+     </div>
+
+     <div class="flashes m-5">
+        <% if (flashMessages) { %>
+          <% if (flashMessages.success) { %>
+      
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="flash success"><%= flashMessages.success %></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+      
+          <% } else if (flashMessages.error) { %>
+           
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="flash error"><%= flashMessages.error %></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+          <% } %>
+        <% } %>
+      </div>
+
+
+  <div class="container">
+  
+      <div class="syllabus"  id="sy">
+
+        <a href="/topic/add/<%=clas.id%>" class="btn btn-primary mb-3">Add Topic <i class="fas fa-plus"></i></a>
+
+          <div class="row">
+              <%clas.syllabus.forEach((sy) => { %> 
+                <div class="col-md-9 pt-3">
+                    <div class="cart bg-light p-2">
+                      <h5><%=sy.topic%></h5>
+                      <div class="icons text-right">
+                          <form action="/delete/topic/<%=clas.id%>/<%=sy.id%>?_method=DELETE" method="POST">
+
+                           <a href="/update/topic/<%=clas.id%>/<%=sy.id%>"><i class="fas fa-pencil-alt mr-3"></i> </a> 
+
+                            <button class="btn btn-light btn-sm" type="submit"><i class="fas fa-times mr-3"></i></button>
+                          </form>
+                      </div>
+                        <% if(sy.status === 'Completed') { %> 
+                            <button class="btn btn-warning btn-sm"><%=sy.status%></button>
+                            <%} else if(sy.status === 'Pending') { %>
+                                <button class="btn btn-danger btn-sm"><%=sy.status%></button>
+
+                           <% } %>
+                     
+
+                    </div>
+                </div>
+                <%})%>
+            
+          </div>
+      </div>
+  </div>
+
+
+  </div>
+  <div class="foot">
+    <%-include('partials/footer.ejs')-%>
+  </div>
+
+  <script>
+
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        let searchBtn = document.querySelector(".bx-search");
+
+        closeBtn.addEventListener("click", ()=>{
+          sidebar.classList.toggle("open");
+          menuBtnChange();//calling the function(optional)
+        });
+
+        searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+          sidebar.classList.toggle("open");
+          menuBtnChange(); //calling the function(optional)
+        });
+
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+        if(sidebar.classList.contains("open")){
+          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+        }else {
+          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+        }
+        }
+
+
+  </script>
+
+</body>
+</html>

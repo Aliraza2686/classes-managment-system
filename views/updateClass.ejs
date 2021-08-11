@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+   
+    <link rel="stylesheet" href="/style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <%-include('partials/bootstrap.ejs')-%>
+    </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <!-- <i class='bx bxl-c-plus-plus icon'></i> -->
+        <div class="logo_name"><%= user.name%></div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <!-- <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li> -->
+      <li>
+        <a href="#">
+        
+          <a href="/dashboard">   <i class='bx bx-grid-alt'></i><span class="links_name">Dashboard</span></a> 
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+       <a href="#">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User</span>
+       </a>
+       <span class="tooltip">User</span>
+     </li>
+   
+     <li>
+       <a href="#">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Setting</span>
+       </a>
+       <span class="tooltip">Setting</span>
+     </li>
+
+     <li>
+      <a href="/logout">
+        <i class="fas fa-power-off"></i>
+        <span class="links_name">Logout</span>
+      </a>
+      <span class="tooltip">Logout</span>
+    </li>
+   
+    </ul>
+  </div>
+  <div class="home-section">
+    <div class="nav bg-light p-3 text-dark">
+      <h5>Update Class <i class="fas fa-building"></i></h5>
+     </div>
+
+     <div class="container">
+                        
+        <form action="/update/class/<%=clas.id%>?_method=PUT" method="POST" class="form-group m-5">
+            <h3 class="text-center">Update Class <i class="fas fa-pencil-alt"></i></h3>
+           <div>
+               <label for="classname">Class Name</label><br>
+               <input type="text" name="classname" id="classname" placeholder="Enter Class Name" required class="form-control" value="<%=clas.classname%>">
+           </div><br>
+           <div>
+            <label for="teacher">Teacher</label><br>
+            <input type="text" name="teacher" id="teacher" placeholder="Enter Teacher name" required class="form-control" value="<%=clas.teacher%>">
+        </div><br>
+           <div>
+            <label for="semmester">Semmester</label><br>
+            <input type="text" name="semmester" id="semmester" placeholder="Enter semmester Name" required class="form-control" value="<%=clas.semmester%>">
+        </div><br>
+        <div>
+            <label for="department">Department Name</label><br>
+            <input type="text" name="department" id="department" placeholder="Enter Department Name" required class="form-control" value="<%=clas.department%>">
+        </div><br>
+      
+        <div>
+            <label for="subject">Subject Name</label><br>
+            <input type="text" name="subject" id="subject" placeholder="Enter Subject Name" required class="form-control" value="<%=clas.subject%>">
+        </div><br>
+        <div>
+            <label for="subjectcode">Subject Code</label><br>
+            <input type="text" name="subjectcode" id="subjectcode" placeholder="Enter Subject Code" required class="form-control" value="<%=clas.subjectcode%>">
+        </div><br>
+        <div>
+            <label for="timeline">Enter Timeline</label><br>
+            <input type="text" name="timeline" id="timeline" placeholder="Enter Timeline" required class="form-control" value="<%=clas.timeline%>">
+        </div><br>
+        <div>
+         <label for="credithours">Credit Hours</label><br>
+         <input type="text" name="credithours" id="credithours" placeholder="Enter credit hours" required class="form-control" value="<%=clas.credithours%>">
+     </div>
+     <div>
+         <label for="shift">Shift</label>
+         <select name="shift" id="shift"  class="form-control">
+   
+            <% if(clas.shift === 'Morning') { %> 
+                <option value="Morning" selected>Morning</option>
+                <%} else if(clas.shift === 'Evening') { %> 
+                    <option value="Evening" selected>Evening</option>
+                    <%}%>
+         </select>
+     </div>
+     <button type="submit" class="btn btn-primary my-3">Update</button>
+     <a href="/dashboard" class="btn btn-danger">Cancel</a>
+        </form>
+    </div>
+  
+
+
+
+  </div>
+  <div class="foot">
+    <%-include('partials/footer.ejs')-%>
+  </div>
+
+  <script>
+
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        let searchBtn = document.querySelector(".bx-search");
+
+        closeBtn.addEventListener("click", ()=>{
+          sidebar.classList.toggle("open");
+          menuBtnChange();//calling the function(optional)
+        });
+
+        searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+          sidebar.classList.toggle("open");
+          menuBtnChange(); //calling the function(optional)
+        });
+
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+        if(sidebar.classList.contains("open")){
+          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+        }else {
+          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+        }
+        }
+
+
+  </script>
+
+</body>
+</html>
